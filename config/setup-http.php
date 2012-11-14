@@ -1,6 +1,6 @@
 <?
 	// load base setup
-	require_once(PATH_BASE.'/config/setup-base.php');
+	require_once(THRIVE_SYSTEM.'/config/setup-script.php');
 	/*
 		setup defaults that are dependent on the web server
 
@@ -20,4 +20,6 @@
 	define('URI_INFO', (isset($_SERVER['PATH_INFO']) ? $_SERVER['PATH_INFO'] : ''));
 	define('URI_FULL', $_SERVER['REQUEST_URI']);
 	define('URI_QUERY', $_SERVER['QUERY_STRING']);
+	if(is_file(THRIVE_USER.'/config/config.php'))
+		require_once(THRIVE_USER.'/config/config.php');
 ?>

@@ -40,7 +40,7 @@
 		}
 		function f() { // fetch
 			if(!$this->result) throw new Exception('There was a problem with the query');
-			return pg_fetch_object($this->result);
+			return pg_fetch_assoc($this->result);
 		}
 		function fs() { // fetch, ensuring a single result
 			if($this->r() < 1 || $this->r() > 1) throw new Exception('Could not find a unique record');

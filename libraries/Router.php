@@ -9,7 +9,7 @@
 				array_shift($segments);
 				$arguments = array();
 				while(count($segments) && empty($this->viewPath)) {
-					$path = PATH_BASE.'/views/'.implode($segments, '/');
+					$path = THRIVE_USER.'/views/'.implode($segments, '/');
 					if(is_file($path.'.php')) {
 						$this->viewPath = $path.'.php';
 					} elseif(is_file($path.'/index.php')) {
@@ -20,7 +20,7 @@
 				}
 			}
 			if(!$this->viewPath)
-				$this->viewPath = PATH_BASE.'/views/index.php';
+				$this->viewPath = THRIVE_USER.'/views/index.php';
 			if(!is_file($this->viewPath))
 				throw new Exception("Sorry, I'm not sure what you're looking for");
 		}
