@@ -1,3 +1,6 @@
+default:
+	@echo "Please specify a target"
+	
 selfupdate:
 	@echo "===> Starting self update..."
 	rm -rf /tmp/thrive
