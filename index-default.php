@@ -8,4 +8,4 @@
 	define('THRIVE_SYSTEM', THRIVE_ROOT.'/thrive');
 	define('THRIVE_USER', THRIVE_ROOT);
 	
-	require_once(THRIVE_SYSTEM.'/config/load.php');
+	require_once(THRIVE_SYSTEM.'/config/setup-http.php');
