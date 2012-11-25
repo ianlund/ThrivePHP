@@ -6,14 +6,24 @@ function isDefined(x) {
 	if(typeof(x) != "undefined") return true;
 	else return false;
 }
-function RCSetupForms() {
-	// For each form on the page
+window.addEventListener('load', function(event) {
+	// for each form on the page
 	for(i=0; i < document.forms.length; i++) {
-		// Add a 'submit' event listener
-		document.forms.item(i).addEventListener('submit', RCHandleFormSubmit, false);
+		f = document.forms[i];
+		// add a 'submit' event listener
+		f.noValidate = true;
+		// except for safari, the event never triggers without noValidate=true
+		f.addEventListener('submit', function(event) {
+			// if form is not valid don't let it submit
+			if(!event.target.checkValidity()) {
+				event.preventDefault();
+				alert('The form contains invalid values.');
+				return false;
+			}
+		}, false);
 		// Some HTML5 elements render retardedly
-		for(j=0; j<document.forms.item(i).elements.length; j++) {
-			e = document.forms.item(i).elements.item(j);
+		for(j=0; j < f.elements.length; j++) {
+			e = f.elements[j];
 			if(e.getAttribute('type') == 'date') {
 				e.setAttribute('type', 'text');
 				e.setAttribute('pattern', RCRegexDate);
@@ -28,25 +38,7 @@ function RCSetupForms() {
 			}
 		}
 	}
-}
-function RCHandleFormSubmit(event) {
-	elements = event.target.elements;
-	formErrors = false;
-	for(i=0; i < elements.length; i++) {
-		if(elements.item(i).checkValidity && elements.item(i).checkValidity() == false)
-			formErrors = true;
-	}
-	if(typeof(validate) == 'function') {
-		if(!validate(event.target))
-			formErrors = true;
-	}
-	if(formErrors) {
-		event.preventDefault();
-		return false;
-	}
-	return true;
-}
-window.addEventListener('load', RCSetupForms, false);
+}, false);
 
 function formatDate(input) {
 	if(input.value == "")
