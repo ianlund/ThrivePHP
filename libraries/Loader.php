@@ -27,13 +27,13 @@
 		}
 		static function library($name) {
 			$path = NULL;
-			if(file_exists(THRIVE_USER.'/models/'.$name.'.php')) {
-				$path = THRIVE_USER.'/models/'.$name.'.php';
+			if(file_exists(THRIVE_USER.'/libraries/'.$name.'.php')) {
+				$path = THRIVE_USER.'/libraries/'.$name.'.php';
 				require_once($path);
 				return;
 			}
-			if(file_exists(THRIVE_SYSTEM.'/models/'.$name.'.php')) {
-				$path = THRIVE_SYSTEM.'/models/'.$name.'.php';
+			if(file_exists(THRIVE_SYSTEM.'/libraries/'.$name.'.php')) {
+				$path = THRIVE_SYSTEM.'/libraries/'.$name.'.php';
 				require_once($path);
 				return;
 			}
